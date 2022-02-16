@@ -33,9 +33,5 @@ const styles = StyleSheet.create({
     color: "#61DAFB",
     fontSize: 35,
   },
-  home__textButton: {
-    fontSize: 40,
-    color: "white",
-  },
 });
 export default styles;

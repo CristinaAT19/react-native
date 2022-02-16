@@ -9,19 +9,19 @@ export default function App() {
   const { Validar, validate, reset } = useValidate(null);
   return (
     <View style={styles.home}>
-      {validate ? (
+      {validate == true ? (
         <Text style={styles.home__mensaje}>
           ¡ Bienvenid@
           <Text style={styles.home__nombre}> {nombre.input}</Text>
           🥳 puedes acceder al sistema !
         </Text>
-      ) : validate == null ? null : (
+      ) : validate == false ? (
         <Text style={styles.home__mensaje}>
           Lo sentimos
           <Text style={styles.home__nombre}> {nombre.input} </Text>
           aun no eres mayor de edad para acceder al sistema 😣
         </Text>
-      )}
+      ) : null}
       <TextInput
         value={nombre.input}
         placeholderTextColor="white"
@@ -43,8 +43,6 @@ export default function App() {
             title="Validar"
             onPress={() => {
               Validar(edad.input);
-              nombre.ResetInput();
-              edad.ResetInput();
             }}
           />
         </View>
