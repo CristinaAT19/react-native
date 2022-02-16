@@ -7,16 +7,16 @@ import styles from "./styles";
 export default function App() {
   const nombre = useInput("");
   const edad = useInput(0);
-  const { Validar, validate } = useValidate(null);
+  const { Validar, validate, reset } = useValidate(null);
   return (
     <View style={styles.home}>
       {validate ? (
         <Text style={styles.home__mensaje}>
           ¡ Bienvenid@
-          <Text style={styles.home__nombre}> {nombre.input} </Text>
+          <Text style={styles.home__nombre}> {nombre.input}</Text>
           🥳 puedes acceder al sistema !
         </Text>
-      ) : (
+      ) : validate == null ? null : (
         <Text style={styles.home__mensaje}>
           Lo sentimos
           <Text style={styles.home__nombre}> {nombre.input} </Text>
@@ -24,21 +24,34 @@ export default function App() {
         </Text>
       )}
       <TextInput
+        value={nombre.input}
+        placeholderTextColor="white"
         style={styles.home__input}
         placeholder="Ingresar Nombre"
         onChangeText={nombre.ChangeInput}
       />
       <TextInput
+        value={edad.input}
+        placeholderTextColor="white"
         style={styles.home__input}
-        placeholder="ingresar Edad"
+        placeholder="Ingresar Edad"
         onChangeText={edad.ChangeInput}
       />
-      <View style={styles.home__button}>
-        <Button
-          color="#007AFF"
-          title="SUMAR"
-          onPress={() => Validar(edad.input)}
-        />
+      <View style={styles.home__contButton}>
+        <View style={styles.home__button}>
+          <Button
+            color="white"
+            title="Validar"
+            onPress={() => {
+              Validar(edad.input);
+              nombre.ResetInput();
+              edad.ResetInput();
+            }}
+          />
+        </View>
+        <View style={styles.home__button}>
+          <Button color="white" title="Limpiar" onPress={reset} />
+        </View>
       </View>
     </View>
   );

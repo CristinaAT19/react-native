@@ -5,7 +5,10 @@ const useValidate = (initialState) => {
   const Validar = (edad) => {
     setValidate(JSON.parse(edad) >= 18);
   };
-  return { validate, Validar };
+  const reset = () => {
+    setValidate(initialState);
+  };
+  return { validate, Validar, reset };
 };
 
 export default useValidate;
