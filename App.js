@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Button, Text, TextInput, View } from "react-native";
 import useInput from "./hooks/useInput";
 import useValidate from "./hooks/useValidate";
@@ -6,7 +5,7 @@ import styles from "./styles";
 
 export default function App() {
   const nombre = useInput("");
-  const edad = useInput(0);
+  const edad = useInput(null);
   const { Validar, validate, reset } = useValidate(null);
   return (
     <View style={styles.home}>
@@ -50,7 +49,15 @@ export default function App() {
           />
         </View>
         <View style={styles.home__button}>
-          <Button color="white" title="Limpiar" onPress={reset} />
+          <Button
+            color="white"
+            title="Limpiar"
+            onPress={() => {
+              reset();
+              nombre.ResetInput();
+              edad.ResetInput();
+            }}
+          />
         </View>
       </View>
     </View>
